@@ -25,20 +25,20 @@ import androidx.navigation.compose.rememberNavController
 import com.example.gulabatu.Data.SumberData.flavor
 
 
-
 enum class PengelolaHalaman {
     Home,
+    Form,
     Rasa,
     Summary
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EsJumboAppbar(
+fun EsJumboAppBar(
     bisaNavigasiBack: Boolean,
     navigasiUp: () -> Unit,
     modifier: Modifier = Modifier
-) {
+){
     TopAppBar(
         title = { Text(stringResource(id = R.string.app_name))},
         colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -47,7 +47,7 @@ fun EsJumboAppbar(
         ),
         modifier = modifier,
         navigationIcon = {
-            if (bisaNavigasiBack) {
+            if (bisaNavigasiBack){
                 IconButton(onClick = navigasiUp) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
@@ -55,80 +55,88 @@ fun EsJumboAppbar(
                     )
                 }
             }
-        })
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EsJumboApp(
     viewModel: OrderViewModel = viewModel(),
+    viewModelForm: ContactViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
-) {
-    Scaffold(
+){
+    Scaffold (
         topBar = {
-            EsJumboAppbar(
+            EsJumboAppBar(
                 bisaNavigasiBack = false,
-                navigasiUp = { /*TODO: implement back navigation */
-                }
+                navigasiUp = { /* TODO: implement back navigation */ }
             )
         }
-    ) { innerPadding ->
+    ){innerPadding ->
         val uiState by viewModel.stateUI.collectAsState()
+        val uiStateForm by viewModelForm.stateUIForm.collectAsState()
+
         NavHost(
             navController = navController,
             startDestination = PengelolaHalaman.Home.name,
             modifier = Modifier.padding(innerPadding)
-        )
-        {
-            composable(route = PengelolaHalaman.Home.name) {
-                HalamanHome(
+        ){
+            composable(route = PengelolaHalaman.Home.name){
+                HalamanHome (
                     onNextButtonClicked = {
-                        navController.navigate(PengelolaHalaman.Rasa.name)
+                        navController.navigate(PengelolaHalaman.Form.name)
                     }
                 )
             }
-            composable(route = PengelolaHalaman.Rasa.name) {
-                val context = LocalContext.current
-                HalamanSatu(
-                    pilihanRasa = flavor.map { id ->
-                        context.resources.getString(id)
+            composable(route = PengelolaHalaman.Form.name){
+                HalamanTiga(
+                    onSubmitButtonClicked = {
+                        viewModelForm.setContact(it)
+                        navController.navigate(PengelolaHalaman.Rasa.name)
                     },
-                    onSelectionChanged = { viewModel.setRasa(it) },
-                    onConfirmButtonClicked = {
-                        viewModel.setJumlah(it)
-                    },
-                    onNextButtonClicked = {
-                        navController.navigate(PengelolaHalaman.Summary.name)
-                    },
-                    onCancelButtonClicked = {
-                        cancelOrderAndNavigateToHome(
-                            viewModel,
-                            navController
+                    onBackButtonClicked = {
+                        navController.popBackStack(
+                            PengelolaHalaman.Home.name,
+                            false
                         )
                     })
             }
-            composable(route = PengelolaHalaman.Summary.name) {
-                HalamanDua(
-                    orderUIState = uiState,
-                    onCancelButtonClicked = {
-                        cancelOrderAndNavigateToRasa(navController) },
-                    //onSendButtonClicked = { subject: String, summary: String -> }
+
+            composable(route = PengelolaHalaman.Rasa.name){
+                val context = LocalContext.current
+                HalamanSatu(
+                    pilihanRasa = flavor.map{id -> context.resources.getString(id)},
+                    onSelectionChanged = {viewModel.setRasa(it)},
+                    onConfirmButtonClicked = {viewModel.setJumlah(it)},
+                    onNextButtonClicked = {navController.navigate(PengelolaHalaman.Summary.name)},
+                    onCancelButtonClicked = {cancelOrderAndNavigateToForm(
+                        viewModel,
+                        navController,
+                    )},
+                    modifier = Modifier
                 )
+            }
+            composable(route = PengelolaHalaman.Summary.name){
+                HalamanDua(
+                    orderUiState = uiState,
+                    contactUiState = uiStateForm,
+                    onCancelButtonClicked = {cancelOrderAndNavigateToRasa(navController)},)
             }
         }
     }
 }
 
-private fun cancelOrderAndNavigateToHome(
+private fun cancelOrderAndNavigateToForm(
     viewModel: OrderViewModel,
     navController: NavHostController
-) {
+){
     viewModel.resetOrder()
-    navController.popBackStack(PengelolaHalaman.Home.name, inclusive = false)
+    navController.popBackStack(PengelolaHalaman.Form.name, inclusive = false)
 }
 
 private fun cancelOrderAndNavigateToRasa(
     navController: NavHostController
-) {
+){
     navController.popBackStack(PengelolaHalaman.Rasa.name, inclusive = false)
 }
