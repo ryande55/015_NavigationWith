@@ -24,7 +24,7 @@ import com.example.gulabatu.ui.theme.GulabatuTheme
 fun HalamanHome(
     onNextButtonClicked: () -> Unit
 ) {
-    val image = painterResource(id = R.drawable.esteh2)
+    val image =  painterResource(id = R.drawable.esteh2)
 
     Column(
         modifier = Modifier
