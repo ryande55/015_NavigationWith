@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HalamanTiga(
-    onSubmitButtonClicked: (MutableList<String>) -> Unit,
+    onSubmitButtonClicked:  (MutableList<String>) -> Unit,
     onBackButtonClicked: () -> Unit,
 ) {
     var namaTxt by remember {

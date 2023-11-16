@@ -23,7 +23,7 @@ import com.example.gulabatu.ui.komponen.FormatLabelHarga
 
 @Composable
 fun HalamanDua (
-    orderUiState: OrderUIState,
+    orderUiState:  OrderUIState,
     contactUiState: ContactUiState,
     onCancelButtonClicked: () -> Unit,
     modifier: Modifier = Modifier

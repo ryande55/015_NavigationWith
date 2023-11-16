@@ -30,7 +30,7 @@ fun HalamanHome(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement =  Arrangement.SpaceBetween
     ) {
         Card(
             border = BorderStroke(1.dp, Color.Black),

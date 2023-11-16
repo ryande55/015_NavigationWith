@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class ContactViewModel: ViewModel() {
+class ContactViewModel:  ViewModel() {
     private val _stateUIForm = MutableStateFlow(ContactUiState())
     val stateUIForm: StateFlow<ContactUiState> = _stateUIForm.asStateFlow()
 

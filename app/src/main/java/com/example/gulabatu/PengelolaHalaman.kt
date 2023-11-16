@@ -25,7 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.gulabatu.Data.SumberData.flavor
 
 
-enum class PengelolaHalaman {
+enum class  PengelolaHalaman {
     Home,
     Form,
     Rasa,
