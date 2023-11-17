@@ -118,7 +118,7 @@ fun HalamanSatu(
                     enabled = textJmlBeli.isNotEmpty(),
                     onClick = onNextButtonClicked
                 ) {
-                    Text(stringResource(R.string.next))
+                    Text(stringResource(R.string.lanjut))
                 }
             }
         }

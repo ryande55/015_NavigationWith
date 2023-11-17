@@ -32,13 +32,18 @@ fun HalamanTiga(
     var namaTxt by remember {
         mutableStateOf("")
     }
-    var tlpnTxt by remember {
+    var nimTxt by remember {
         mutableStateOf("")
     }
-    var alamatTxt by remember {
+    var kosentrasiTxt by remember {
         mutableStateOf("")
     }
-    var listData: MutableList<String> = mutableListOf(namaTxt, alamatTxt, tlpnTxt)
+    var judulskripsiTxt by remember {
+        mutableStateOf("")
+
+
+    }
+    var listData: MutableList<String> = mutableListOf(namaTxt, kosentrasiTxt, nimTxt, judulskripsiTxt)
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,35 +53,50 @@ fun HalamanTiga(
 
         Spacer(modifier = Modifier.height(125.dp))
 
-        Text(text = "Data Pelanggan", modifier = Modifier.padding(bottom = 25.dp))
+        Text(text = "Formulir Pengajuan Skripsi", modifier = Modifier.padding(bottom = 25.dp))
 
         OutlinedTextField(
             value = namaTxt,
             onValueChange = { namaTxt = it },
             label = { Text(text = stringResource(id = R.string.nama)) },
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
 
         )
 
         Spacer(modifier = Modifier.height(30.dp))
 
         OutlinedTextField(
-            value = tlpnTxt,
-            onValueChange = { tlpnTxt = it },
-            label = { Text(text = stringResource(id = R.string.no_telp)) },
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+            value = nimTxt,
+            onValueChange = { nimTxt = it },
+            label = { Text(text = stringResource(id = R.string.nim)) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.height(30.dp))
 
         OutlinedTextField(
-            value = alamatTxt,
-            onValueChange = { alamatTxt = it },
-            label = { Text(text = stringResource(id = R.string.alamat)) },
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+            value = kosentrasiTxt,
+            onValueChange = { kosentrasiTxt = it },
+            label = { Text(text = stringResource(id = R.string.kosentrasi)) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.height(30.dp))
+
+        OutlinedTextField(
+            value = judulskripsiTxt,
+            onValueChange = { judulskripsiTxt = it },
+            label = { Text(text = stringResource(id = R.string.judul_skripsi)) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        )
 
         Row(
             modifier = Modifier
@@ -86,9 +106,6 @@ fun HalamanTiga(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.Bottom
         ) {
-            Button(onClick = onBackButtonClicked) {
-                Text(text = stringResource(id = R.string.btn_back))
-            }
             Button(onClick = { onSubmitButtonClicked(listData) }) {
                 Text(text = stringResource(id = R.string.btn_submit))
             }

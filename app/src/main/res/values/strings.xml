@@ -2,7 +2,7 @@
     <string name="app_name">EsJumbo</string>
     <string name="back_button">Kembali</string>
     <string name="confirm">Konfirmasi</string>
-    <string name="next">Lanjut</string>
+    <string name="lanjut">next</string>
     <string name="cancel">Batal</string>
     <string name="vanila">Vanila</string>
     <string name="lemon">Lemon</string>
@@ -15,9 +15,15 @@
     <string name="flavor">Rasa</string>
     <string name="subtotal_price">Subtotal: Rp %s</string>
     <string name="total_price">Total %s</string>
-    <string name="nama">Nama Pelanggan</string>
     <string name="alamat">Alamat</string>
     <string name="no_telp"> No Telepon</string>
-    <string name="btn_submit">Selanjutnya</string>
     <string name="btn_back">Batal</string>
+    <string name="nama">Nama mahasiswa</string>
+    <string name="nim">Nim</string>
+    <string name="kosentrasi">Kosentrasi</string>
+    <string name="judul_skripsi">Judul Skripsi</string>
+    <string name="dosen1">Haris Setiawan</string>
+    <string name="dosen2">Dwi joko</string>
+    <string name="dosen3">Aprilia</string>
+    <string name="btn_submit">Selanjutnya</string>
 </resources>

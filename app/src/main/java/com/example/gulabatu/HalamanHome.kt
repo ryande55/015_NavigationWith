@@ -49,19 +49,6 @@ fun HalamanHome(
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                 )
-                Text(
-                    text = "es Teh",
-                    color = Color.DarkGray,
-                    fontFamily = FontFamily.Cursive,
-                    fontSize = 35.sp,
-                )
-                Text(
-                    text = "Gembrunggung",
-                    color = Color.DarkGray,
-                    fontFamily = FontFamily.Cursive,
-                    fontSize = 60.sp,
-                    fontWeight = FontWeight.Bold
-                )
             }
         }
         Button(
@@ -70,7 +57,7 @@ fun HalamanHome(
                 .fillMaxWidth()
                 .padding(8.dp)
         ) {
-            Text(stringResource(id = R.string.next))
+            Text(stringResource(id = R.string.lanjut))
         }
     }
 }
